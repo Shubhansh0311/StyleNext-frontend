@@ -19,7 +19,7 @@ const orderId=new URLSearchParams(location.search).get('order_id')
     useEffect(() => {
 
         dispatch(getOrderById(orderId))
-    },[])
+    },[dispatch, orderId])
 
     const handleCheckout =()=>{
         

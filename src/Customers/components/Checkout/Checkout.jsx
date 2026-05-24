@@ -6,7 +6,7 @@ import StepButton from '@mui/material/StepButton';
 import Button from '@mui/material/Button';
 // import Typography from '@mui/material/Typography';
 import React from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import DeliveryAddressForm from './DeliveryAddressForm';
 import OrderSummary from './OrderSummary';
 import { useMediaQuery } from '@mui/material';
@@ -74,7 +74,7 @@ export const Checkout = () => {
       </Box>
 
       <div className="">
-        {step == 2 ? <DeliveryAddressForm /> : <OrderSummary />}
+        {step === 2 ? <DeliveryAddressForm /> : <OrderSummary />}
       </div>
     </div>
 
