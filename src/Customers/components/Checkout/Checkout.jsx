@@ -27,6 +27,7 @@ export const Checkout = () => {
   // Memoized search params
   const currentStep = useMemo(() => {
     const searchParams = new URLSearchParams(location.search);
+console.log("searchParams", searchParams.get("step"));
 
     return Number(searchParams.get("step")) || 0;
   }, [location.search]);
@@ -35,6 +36,7 @@ export const Checkout = () => {
 
   // Next Step
   const handleNext = useCallback(() => {
+  
     setCompleted((prev) => ({
       ...prev,
       [currentStep]: true,
@@ -43,7 +45,15 @@ export const Checkout = () => {
 
   // Back Step
   const handleBack = useCallback(() => {
+    console.log("Back clicked");
+  
     if (currentStep <= 0) return;
+    else{
+      setCompleted((prev) => ({
+        ...prev,
+        [currentStep - 1]: false,
+      }));
+    }
   }, [currentStep]);
 
   return (
@@ -93,7 +103,7 @@ export const Checkout = () => {
       </Box>
 
       <div>
-        {currentStep === 1 ? (
+        {currentStep === 2? (
           <DeliveryAddressForm />
         ) : (
           <OrderSummary />
