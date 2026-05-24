@@ -9,7 +9,7 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 const CartPage = () => {
   const navigate = useNavigate();
   const { cart } = useSelector((state) => state);
-  
+  const user = useSelector((state) => state.auth.user);
 // console.log(cart);
 
   const dispatch = useDispatch();
@@ -17,7 +17,7 @@ const CartPage = () => {
     // console.log("effecting ");
 
     dispatch(getCartItem());
-  }, []);
+  }, [user, dispatch]);
   
   // console.log(cart?.cart.cartItems); // Uncommenting this line to log cart items
 

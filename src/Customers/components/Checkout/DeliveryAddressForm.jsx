@@ -12,10 +12,10 @@ const DeliveryAddressForm = () => {
   const navigate = useNavigate();
   const [selectedAddressId, setSelectedAddressId] = React.useState(null);
   const [addressError, setAddressError] = React.useState(false);
-
+const jwt = localStorage.getItem("jwt");
   useEffect(() => {
     dispatch(getUser());
-  }, []);
+  }, [jws]);
   
   const user = useSelector((state) => state);
   const addresses = user?.auth?.user?.address;

@@ -4,7 +4,7 @@ import Stepper from '@mui/material/Stepper';
 import Step from '@mui/material/Step';
 import StepButton from '@mui/material/StepButton';
 import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
+// import Typography from '@mui/material/Typography';
 import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import DeliveryAddressForm from './DeliveryAddressForm';
@@ -21,7 +21,7 @@ export const Checkout = () => {
 
 
 
-  const navigate = useNavigate()
+  // const navigate = useNavigate()
   const location = useLocation()
   const searchParams = new URLSearchParams(location.search)
   const step = searchParams.get('step')
