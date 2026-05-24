@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import "./ProductCard.css"
-import { useLocation, useNavigate, useParams } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 const ProductCard = ({product}) => {
   
 //     

@@ -19,7 +19,7 @@ import {
   PlusIcon,
   Squares2X2Icon,
 } from "@heroicons/react/20/solid";
-import { mens } from "../homeSectionCarousel/homeCarouselData";
+// import { mens } from "../homeSectionCarousel/homeCarouselData";
 import ProductCard from "./ProductCard";
 import FilterListIcon from "@mui/icons-material/FilterList";
 import { Multiplefilters, singleFilters } from "./filterData";
@@ -96,8 +96,7 @@ console.log(product);
     dispatch(findProduct(data))
 
    
-  }, [
-    params.level3,
+  },[params.level3,
     params.level2,
     colorValue,
     discountValue,
@@ -109,7 +108,8 @@ console.log(product);
     params.levelTwo,
     minPrice,
     maxPrice,
-   
+    dispatch,
+    pageSize,
   ]);
 
 
