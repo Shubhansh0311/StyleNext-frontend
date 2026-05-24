@@ -15,7 +15,7 @@ const DeliveryAddressForm = () => {
 const jwt = localStorage.getItem("jwt");
   useEffect(() => {
     dispatch(getUser());
-  }, [jws]);
+  }, [jwt]);
   
   const user = useSelector((state) => state);
   const addresses = user?.auth?.user?.address;
