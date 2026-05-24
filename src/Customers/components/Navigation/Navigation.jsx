@@ -1,4 +1,4 @@
-import { Fragment, use, useEffect, useRef, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import {
   Button,
   Dialog,
@@ -14,15 +14,10 @@ import {
   TabPanel,
   TabPanels,
 } from "@headlessui/react";
-import {
-  Bars3Icon,
-  MagnifyingGlassIcon,
-  ShoppingBagIcon,
-  XMarkIcon,
-} from "@heroicons/react/24/outline";
+import { Bars3Icon, MagnifyingGlassIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { Avatar, Badge } from "@mui/material";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import AuthModal from "../../Auth/AuthModal";
 import { navigation } from "./NavigationData.js";
 import { useDispatch, useSelector } from "react-redux";
@@ -33,35 +28,21 @@ export default function Navigation() {
   // const [navigate, setNavigate] = useState();
 
   const navigate = useNavigate();
-  const { auth } = useSelector((store) => store);
+  const dispatch = useDispatch();
+  const { auth, cart } = useSelector((store) => store);
 
   const jwt = localStorage.getItem("jwt");
-  const location = useLocation();
 
-  const dispatch = useDispatch();
- 
- console.log(auth);
- const ref=useRef();
- console.log(ref.current?.textContent );
-
-       
-  useEffect(
-    (jwt) => {
-      
-      dispatch(getUser(jwt)).then(() => {
-
-       dispatch(getCartItem());
-        
-        handleAuthClose();
-      
-      });
-    },
-    [jwt, auth.jwt, dispatch]
-  );
+  useEffect(() => {
+    if (!jwt) return;
+    dispatch(getUser(jwt)).then(() => {
+      dispatch(getCartItem());
+      setOpenAuthModal(false);
+    });
+  }, [jwt, dispatch]);
 
   const [openAuthModal, setOpenAuthModal] = useState(false);
   const [open, setOpen] = useState(false);
-  const { cart } = useSelector((store) => store);
   // const navigate=useNavigate()
 
   const handleCategoryClick = (category, section, item) => {
@@ -361,10 +342,10 @@ export default function Navigation() {
               </PopoverGroup>
 
               <div className="ml-auto flex items-center">
-                {auth.user?.firstName[0] ? (
+                {auth.user?.firstName?.[0] ? (
                   <Popover className="relative">
                     <PopoverButton className="flex items-center text-sm font-medium text-gray-700 hover:text-gray-800">
-                      <Avatar ref={ref}
+                      <Avatar
                         className="text-white"
                         sx={{ bgcolor: "#4f46e5", cursor: "pointer" }}
                       >

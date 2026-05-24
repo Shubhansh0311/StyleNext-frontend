@@ -1,26 +1,19 @@
-import {  Button, Grid, TextField } from "@mui/material";
+import { Button, Grid, TextField } from "@mui/material";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { getUser, register } from "../State/Auth/Action.js";
 
 const RegisterForm = () => {
-  const jwt = localStorage.getItem("jwt") 
-// console.log(jwt);
-
-  const auth = useSelector((store) => store);
-  const navigate = useNavigate();
-
-  
- 
-  // reducer
-
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { jwt, isLoading } = useSelector((store) => store.auth);
 
   useEffect(() => {
-  
-    dispatch(getUser(jwt));
-  }, [jwt, auth.jwt]);
+    if (jwt) {
+      dispatch(getUser(jwt));
+    }
+  }, [jwt, dispatch]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -87,31 +80,21 @@ const RegisterForm = () => {
               fullWidth
               sx={{ padding: ".8rem 2rem", backgroundColor: "#4f46e5" }}
               type="submit"
+              disabled={isLoading}
             >
-           {auth.isLoading ? (
-                <div className="flex items-center justify-center gap-2 ">
-                  <span>Registering...</span>
-                </div>
-              ) : (
-                "Register"
-              )}
+              {isLoading ? "Registering..." : "Register"}
             </Button>
           </Grid>
         </Grid>
       </form>
-      <div className="flex justify-center p-2 items-center">
-        <div className="flex items-center justify-center ">
-          <p>Already have an account</p>
-          <Button
-            size="small"
-            className="ml-3"
-            onClick={() => {
-              navigate("/login");
-            }}
-          >
-            login
-          </Button>
-        </div>
+      <div className="flex justify-center p-2 items-center gap-2">
+        <p>Already have an account</p>
+        <Button
+          size="small"
+          onClick={() => navigate("/login")}
+        >
+          login
+        </Button>
       </div>
     </div>
   );
