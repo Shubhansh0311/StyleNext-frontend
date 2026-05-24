@@ -1,4 +1,4 @@
-import { Grid, Grid2 } from '@mui/material'
+import { Grid} from '@mui/material'
 import React, { useEffect } from 'react'
 import OrderCard from './OrderCard'
 import { useNavigate } from 'react-router-dom'

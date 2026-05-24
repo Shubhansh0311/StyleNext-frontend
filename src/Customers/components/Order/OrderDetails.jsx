@@ -1,8 +1,8 @@
 import React from 'react'
 import AddressCard from '../AdressCard/AddressCard'
 import { OrderTracker } from './OrderTracker'
-import { Button, colors, Grid } from '@mui/material'
-import { Grade, StarOutline } from '@mui/icons-material'
+import { Button,  Grid } from '@mui/material'
+import {  StarOutline } from '@mui/icons-material'
 
 const OrderDetails = () => {
   return (
