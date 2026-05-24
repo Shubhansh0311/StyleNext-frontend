@@ -1,28 +1,46 @@
-import Box from '@mui/material/Box';
-import Stepper from '@mui/material/Stepper';
-import Step from '@mui/material/Step';
-import StepButton from '@mui/material/StepButton';
-import React from 'react';
-import useMediaQuery from '@mui/material/useMediaQuery';
+import React, { useMemo } from "react";
 
-export const OrderTracker = ({ step }) => {
-    const steps = ['Placed', 'Order Confirmed', 'Shipped', 'Out for Delivery', 'Delivered'];
-    const [completed, setCompleted] = React.useState({});
-    const isSmallScreen = useMediaQuery('(max-width:600px)');
+import Box from "@mui/material/Box";
+import Stepper from "@mui/material/Stepper";
+import Step from "@mui/material/Step";
+import StepButton from "@mui/material/StepButton";
 
-    return (
-        <Box>
-            <Stepper orientation={isSmallScreen ? 'vertical' : 'horizontal'} activeStep={step}>
-                {steps.map((label, index) => (
-                    <Step key={label} completed={completed[index]}>
-                        <StepButton className='text-sm' color="inherit">
-                            <span className="lg:text-sm text-[12px]">
-                                {label}
-                            </span>
-                        </StepButton>
-                    </Step>
-                ))}
-            </Stepper>
-        </Box>
-    );
+import useMediaQuery from "@mui/material/useMediaQuery";
+
+export const OrderTracker = ({ step = 0 }) => {
+  const isSmallScreen = useMediaQuery("(max-width:600px)");
+
+  // Memoized steps
+  const steps = useMemo(
+    () => [
+      "Placed",
+      "Order Confirmed",
+      "Shipped",
+      "Out for Delivery",
+      "Delivered",
+    ],
+    []
+  );
+
+  return (
+    <Box sx={{ width: "100%" }}>
+      <Stepper
+        orientation={isSmallScreen ? "vertical" : "horizontal"}
+        activeStep={Number(step)}
+      >
+        {steps.map((label, index) => (
+          <Step
+            key={label}
+            completed={index < step}
+          >
+            <StepButton color="inherit">
+              <span className="lg:text-sm text-xs">
+                {label}
+              </span>
+            </StepButton>
+          </Step>
+        ))}
+      </Stepper>
+    </Box>
+  );
 };
