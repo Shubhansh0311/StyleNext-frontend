@@ -17,7 +17,7 @@ const Homepage = () => {
     <HomeSectionCarousel sectionName="Women's" data={women}/>
     {/* <HomeSectionCarousel sectionName="kid's wear"/> */}
   </div>
-  {/* <Footer/> */}
+  <Footer/>
     </div>
 
   

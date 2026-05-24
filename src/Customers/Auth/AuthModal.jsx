@@ -1,8 +1,8 @@
-import { Box, Button, Modal, Typography } from "@mui/material";
+import { Box, Modal } from "@mui/material";
 
 import React from "react";
 import RegisterForm from "./RegisterForm";
-import { replace, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import LoginForm from "./LoginForm";
 
 const AuthModal = ({ openAuthModal, handleClose }) => {
